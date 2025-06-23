@@ -16,21 +16,21 @@ if uploaded_file:
     tab1, tab2, tab3 = st.tabs(["Rata-rata Penggunaan", "Korelasi", "Platform Adiktif"])
 
     with tab1:
-    st.header("Rata-rata Jam Penggunaan Media Sosial Harian")
-    fig = px.bar(
-        df,
-        x="Academic_Level",
-        y="Avg_Daily_Usage_Hours",
-        color="Gender",
-        barmode="group",
-        hover_data=["Avg_Daily_Usage_Hours", "Gender", "Academic_Level"]
-    )
-    fig.update_layout(
-        title="Penggunaan Harian berdasarkan Gender & Pendidikan",
-        yaxis_title="Jam / Hari",
-        xaxis_title="Academic_Level"
-    )
-    st.plotly_chart(fig, use_container_width=True)
+        st.header("Rata-rata Jam Penggunaan Media Sosial Harian")
+        fig = px.bar(
+            df,
+            x="Academic_Level",
+            y="Avg_Daily_Usage_Hours",
+            color="Gender",
+            barmode="group",
+            hover_data=["Avg_Daily_Usage_Hours", "Gender", "Academic_Level"]
+        )
+        fig.update_layout(
+            title="Penggunaan Harian berdasarkan Gender & Pendidikan",
+            yaxis_title="Jam / Hari",
+            xaxis_title="Academic_Level"
+        )
+        st.plotly_chart(fig, use_container_width=True)
     
     with tab2:
         st.header("Korelasi Media Sosial, Tidur, dan Kesehatan Mental")
