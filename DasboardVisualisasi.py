@@ -2,6 +2,7 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 import streamlit as st
+import plotly.express as px
 
 st.set_page_config(layout="wide")
 st.title("Dashboard Kecanduan Media Sosial Mahasiswa")
@@ -15,12 +16,23 @@ if uploaded_file:
     tab1, tab2, tab3 = st.tabs(["Rata-rata Penggunaan", "Korelasi", "Platform Adiktif"])
 
     with tab1:
-        st.header("Rata-rata Jam Penggunaan Media Sosial Harian")
-        fig, ax = plt.subplots(figsize=(10, 5))
-        sns.barplot(data=df, x="Academic_Level", y="Avg_Daily_Usage_Hours", hue="Gender", ci="sd", ax=ax)
-        ax.set_title("Penggunaan Harian berdasarkan Gender & Pendidikan")
-        ax.set_ylabel("Jam / Hari")
-        st.pyplot(fig)
+    st.header("Rata-rata Jam Penggunaan Media Sosial Harian")
+    fig = px.bar(
+        df,
+        x="Academic_Level",
+        y="Avg_Daily_Usage_Hours",
+        color="Gender",
+        barmode="group",
+        error_y="Avg_Daily_Usage_Hours",  # opsional jika kamu ingin tampilkan error bar manual
+        hover_data=["Avg_Daily_Usage_Hours", "Gender", "Academic_Level"]
+    )
+    fig.update_layout(
+        title="Penggunaan Harian berdasarkan Gender & Pendidikan",
+        yaxis_title="Jam / Hari",
+        xaxis_title="Academic_Level"
+    )
+    st.plotly_chart(fig, use_container_width=True)
+
 
     with tab2:
         st.header("Korelasi Media Sosial, Tidur, dan Kesehatan Mental")
