@@ -23,7 +23,6 @@ if uploaded_file:
         y="Avg_Daily_Usage_Hours",
         color="Gender",
         barmode="group",
-        error_y="Avg_Daily_Usage_Hours",  # opsional jika kamu ingin tampilkan error bar manual
         hover_data=["Avg_Daily_Usage_Hours", "Gender", "Academic_Level"]
     )
     fig.update_layout(
@@ -32,8 +31,7 @@ if uploaded_file:
         xaxis_title="Academic_Level"
     )
     st.plotly_chart(fig, use_container_width=True)
-
-
+    
     with tab2:
         st.header("Korelasi Media Sosial, Tidur, dan Kesehatan Mental")
         corr_data = df[["Avg_Daily_Usage_Hours", "Sleep_Hours_Per_Night", "Mental_Health_Score"]].corr()
